@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE = import.meta.env.VITE_API_URL || "http://localhost:8080/api/notes";
+const BASE = import.meta.env.VITE_API_URL || "http://localhost:8080";
 
 const API = axios.create({
   baseURL: BASE,
@@ -9,10 +9,10 @@ const API = axios.create({
   },
 });
 
-// ✅ remove extra slashes
-export const getNotes = () => API.get(""); 
-export const getNote = (id) => API.get(`/${id}`);
-export const getNoteByShareId = (shareId) => API.get(`/share/${shareId}`);
-export const createNote = (note) => API.post("", note);
-export const updateNote = (id, note) => API.put(`/${id}`, note);
-export const deleteNote = (id) => API.delete(`/${id}`);
+// now always append `/api/notes`
+export const getNotes = () => API.get("/api/notes");
+export const getNote = (id) => API.get(`/api/notes/${id}`);
+export const getNoteByShareId = (shareId) => API.get(`/api/notes/share/${shareId}`);
+export const createNote = (note) => API.post("/api/notes", note);
+export const updateNote = (id, note) => API.put(`/api/notes/${id}`, note);
+export const deleteNote = (id) => API.delete(`/api/notes/${id}`);
